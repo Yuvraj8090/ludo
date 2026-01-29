@@ -1,0 +1,592 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Loading */
+.loading {
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Home Screen */
+.home {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.home h1 {
+  color: #667eea;
+  margin-bottom: 30px;
+  font-size: 36px;
+}
+
+.user-info {
+  margin-bottom: 40px;
+}
+
+.avatar {
+  font-size: 60px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.user-info h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  color: #666;
+  font-size: 14px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.menu button {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.menu button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Lobby */
+.lobby {
+  background: white;
+  border-radius: 20px;
+  padding: 60px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.lobby h2 {
+  color: #667eea;
+  margin-bottom: 30px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 30px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.lobby button {
+  padding: 10px 30px;
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Game Container */
+.game-container {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.player-info {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.game-board {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.board-svg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border: 3px solid #333;
+  border-radius: 10px;
+  background: white;
+}
+
+.pieces-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pieces-container > div {
+  pointer-events: auto;
+}
+
+.players-list {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.players-list h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.player-card.active {
+  background: #e3f2fd;
+  box-shadow: 0 0 0 3px #2196f3;
+  transform: scale(1.05);
+}
+
+.player-card .avatar {
+  font-size: 24px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.user-card .avatar {
+  font-size: 32px;
+}
+
+/* Controls */
+.controls {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.dice-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dice-button {
+  width: 100px;
+  height: 100px;
+  font-size: 48px;
+  background: white;
+  border: 4px solid #667eea;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dice-button:hover:not(:disabled) {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.dice-button:active:not(:disabled) {
+  transform: translateY(0) scale(1);
+}
+
+.dice-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dice-result {
+  width: 100px;
+  height: 100px;
+  font-size: 64px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: diceRoll 0.5s ease;
+}
+
+@keyframes diceRoll {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+}
+
+.turn-indicator {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Chat */
+.chat {
+  grid-column: 3;
+  grid-row: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  max-height: 400px;
+}
+
+.chat h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.chat-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.chat-message .avatar {
+  font-size: 20px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.chat-input input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-input button:hover {
+  background: #5568d3;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .game-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .game-board {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .players-list {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .controls {
+    grid-column: 1;
+    grid-row: 3;
+    flex-direction: row;
+  }
+
+  .chat {
+    grid-column: 1;
+    grid-row: 4;
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    padding: 10px;
+  }
+
+  .board-svg {
+    max-width: 100%;
+  }
+
+  .dice-button,
+  .dice-result {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
+}
+:root {
+  --bg-color: #1e1e2e;
+  --board-bg: #ffffff;
+  --red: #ef4444;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --yellow: #eab308;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  overflow: hidden; /* Prevent scroll on full game */
+}
+
+/* --- LAYOUT --- */
+.game-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* --- LEFT & RIGHT PANELS --- */
+.sidebar {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- BOARD AREA --- */
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.ludo-board {
+  width: 90vh; /* Responsive based on height */
+  height: 90vh;
+  max-width: 600px;
+  max-height: 600px;
+  background-color: var(--board-bg);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative; /* Context for absolute pieces */
+}
+
+/* --- ANIMATED PIECES --- */
+.piece {
+  width: 5%; /* Relative to board size */
+  height: 5%;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 2px solid white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+  cursor: pointer;
+  
+  /* THIS IS THE MAGIC MOVEMENT CODE */
+  transition: top 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              left 0.5s cubic-bezier(0.4, 0.0, 0.2, 1),
+              transform 0.2s;
+}
+
+.piece:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 20;
+}
+
+.piece.clickable {
+  animation: pulse 1.5s infinite;
+  border: 2px solid #fff;
+  box-shadow: 0 0 15px currentColor;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* --- DICE CONTROLS --- */
+.dice-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+  color: #333;
+}
+
+.dice {
+  font-size: 3rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dice.rolling {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* --- CHAT --- */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.chat-bubble {
+  background: rgba(0,0,0,0.3);
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    overflow-y: auto;
+  }
+  .ludo-board {
+    width: 100vw;
+    height: 100vw;
+  }
+}

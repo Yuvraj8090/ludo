@@ -1,0 +1,143 @@
+/* Container for the whole video chat widget */
+.video-chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px; /* Base width, expands if many players */
+  max-height: 80vh;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  border: 1px solid #333;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Header */
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #252525;
+  border-bottom: 1px solid #333;
+}
+
+.video-header h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #ff5555;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Video Grid Layout */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+/* Individual Video Wrappers */
+.video-wrapper {
+  position: relative;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4/3; /* Standard webcam aspect ratio */
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Local video mirror effect */
+.video-wrapper.local video {
+  transform: scaleX(-1);
+}
+
+.video-wrapper video.hidden {
+  display: none;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 12px;
+}
+
+/* User Labels */
+.user-label {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+/* Controls Bar */
+.video-controls {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #252525;
+  border-top: 1px solid #333;
+}
+
+.video-controls button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1;
+  margin: 0 4px;
+}
+
+.video-controls button:hover {
+  background-color: #2563eb;
+}
+
+.video-controls button.off {
+  background-color: #ef4444;
+}
+
+.video-controls button.off:hover {
+  background-color: #dc2626;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .video-chat-container {
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    border-radius: 12px 12px 0 0;
+  }
+}
